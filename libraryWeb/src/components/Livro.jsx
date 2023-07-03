@@ -1,3 +1,4 @@
+
 import { StyledLivro,StyledImage } from "./styles/Livro.Styled"
 export default function Livro({livro}){
     
