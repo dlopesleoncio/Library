@@ -8,6 +8,6 @@ import biblioteca.models.Livro;
 
 @Repository
 @EnableJpaRepositories
-public interface LivroRepository extends JpaRepository<Livro, Integer> {
+public interface LivroRepository extends JpaRepository<Livro, Long> {
 
 }

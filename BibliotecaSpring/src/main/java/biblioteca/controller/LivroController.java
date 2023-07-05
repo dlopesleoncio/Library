@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import biblioteca.models.Livro;
 import biblioteca.repositories.LivroRepository;
+import biblioteca.service.LivroService;
 @RestController
 @RequestMapping("/api/livros")
 public class LivroController {
@@ -24,6 +25,9 @@ public class LivroController {
 	@Autowired
 	private LivroRepository livroRepository;
 	
+	@Autowired
+	private LivroService livroService;        
+        
 	@Autowired
 	public LivroController(LivroRepository livroRepository) {
 		this.livroRepository =  livroRepository;
@@ -35,16 +39,16 @@ public class LivroController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Livro> getLivro(@PathVariable Integer id){
+	public ResponseEntity<Livro> getLivro(@PathVariable Long id){
 		Livro livro = livroRepository.findById(id).orElse(null);
-        if (livro != null) {
-            return ResponseEntity.ok(livro);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+            if (livro != null) {
+                return ResponseEntity.ok(livro);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
 	}
 	
-	@PostMapping
+    @PostMapping
     @Transactional
     public ResponseEntity<Livro> cadastrarLivro(@RequestBody Livro livro) {
 		livroRepository.save(livro);
@@ -53,31 +57,14 @@ public class LivroController {
 	
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Livro> alterarCategoria(@PathVariable int id, @RequestBody Livro novolivro) {
-    	Livro livro = livroRepository.findById(id).orElse(null);
-        if (livro != null) {
-        	livro.setTitulo(novolivro.getTitulo());
-        	livro.setAutor(novolivro.getAutor());
-        	livro.setAnoPublicacao(novolivro.getAnoPublicacao());
-        	livro.setDisponivel(novolivro.getDisponivel());
-
-        	livroRepository.save(livro);
-            return ResponseEntity.ok(livro);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }	
-	
+    public ResponseEntity<Livro> alterarLivro(@PathVariable Long id, @RequestBody Livro novolivro) {
+        return livroService.alterarLivroService(id, novolivro);
+    }
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<Void> deletarProduto(@PathVariable int id) {
-    	Livro livro = livroRepository.findById(id).orElse(null);
-        if (livro != null) {
-        	livroRepository.delete(livro);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Void> deletarLivro(@PathVariable Long id) {
+
+        return livroService.deletarLivroService(id);
     }
 	
 }

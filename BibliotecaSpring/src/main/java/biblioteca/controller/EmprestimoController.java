@@ -32,12 +32,6 @@ public class EmprestimoController {
 	@Autowired
 	private EmprestimoRepository emprestimoRepository;
 	
-	@Autowired
-	private LivroRepository livroRepository;
-	
-	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
 	//@Autowired
 /*	public EmprestimoController(EmprestimoRepository emprestimoRepository,LivroRepository livroRepository,UsuarioRepository usuarioRepository  ) {
 		this.emprestimoRepository =  emprestimoRepository;
@@ -67,29 +61,15 @@ public class EmprestimoController {
         }
 	}
 	
-	@PostMapping
+    @PostMapping
     @Transactional
-    public ResponseEntity<Emprestimo> cadastrarLivro(@RequestBody Emprestimo emprestimo) {
-		Livro livro = emprestimo.getLivro();
-		Usuario usuario = emprestimo.getUsuario();
-		
-		Livro livroexistente = livroRepository.findById(livro.getId()).orElse(null);
-		if(livroexistente != null) {
-			emprestimo.setLivro(livroexistente);
-		}
-		
-		Usuario usuarioExistente = usuarioRepository.findById(usuario.getId()).orElse(null);
-		if(usuarioExistente != null) {
-			emprestimo.setUsuario(usuarioExistente);
-		}
-		
-		emprestimoRepository.save(emprestimo);
-        return ResponseEntity.status(HttpStatus.CREATED).body(emprestimo);
+    public ResponseEntity<Emprestimo> cadastrarEmprestimo(@RequestBody Emprestimo emprestimo) {
+
     }
 	
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Emprestimo> alterarCategoria(@PathVariable int id, @RequestBody Emprestimo novoEmprestimo) {
+    public ResponseEntity<Emprestimo> alterarEmprestimo(@PathVariable int id, @RequestBody Emprestimo novoEmprestimo) {
     	Emprestimo emprestimo = emprestimoRepository.findById(id).orElse(null);
         if (emprestimo != null) {
         	emprestimo.setLivro(emprestimo.getLivro());
@@ -106,7 +86,7 @@ public class EmprestimoController {
 	
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<Void> deletarProduto(@PathVariable int id) {
+    public ResponseEntity<Void> deletarEmprestimo(@PathVariable int id) {
     	Emprestimo emprestimo = emprestimoRepository.findById(id).orElse(null);
         if (emprestimo != null) {
         	emprestimoRepository.delete(emprestimo);

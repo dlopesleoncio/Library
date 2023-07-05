@@ -16,7 +16,7 @@ import jakarta.persistence.OneToMany;
 public class Livro implements Serializable  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	private String titulo;
     private String autor;
@@ -57,10 +57,10 @@ public class Livro implements Serializable  {
 	public void setAnoPublicacao(int anoPublicacao) {
 		this.anoPublicacao = anoPublicacao;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public long getNroPaginas() {
