@@ -19,7 +19,7 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
     
-    private Usuario getUsuarioByIdSErvice(){
-    
+    public Usuario getUsuarioByIdService(Long id){
+    	return usuarioRepository.findById(id).orElseThrow(()-> new RuntimeException("Usuario não encontrado"));
     }
 }

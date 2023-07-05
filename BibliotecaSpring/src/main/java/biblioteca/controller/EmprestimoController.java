@@ -22,6 +22,7 @@ import biblioteca.models.Usuario;
 import biblioteca.repositories.EmprestimoRepository;
 import biblioteca.repositories.LivroRepository;
 import biblioteca.repositories.UsuarioRepository;
+import biblioteca.service.EmprestimoService;
 
 
 @RestController
@@ -31,6 +32,9 @@ public class EmprestimoController {
 	
 	@Autowired
 	private EmprestimoRepository emprestimoRepository;
+	
+	@Autowired
+	private EmprestimoService emprestimoService;
 	
 	//@Autowired
 /*	public EmprestimoController(EmprestimoRepository emprestimoRepository,LivroRepository livroRepository,UsuarioRepository usuarioRepository  ) {
@@ -64,7 +68,7 @@ public class EmprestimoController {
     @PostMapping
     @Transactional
     public ResponseEntity<Emprestimo> cadastrarEmprestimo(@RequestBody Emprestimo emprestimo) {
-
+    	return emprestimoService.cadastrarEmprestimo(emprestimo);
     }
 	
     @PutMapping("/{id}")

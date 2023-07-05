@@ -7,6 +7,8 @@ package biblioteca.service;
 import biblioteca.models.Emprestimo;
 import biblioteca.models.Livro;
 import biblioteca.models.Usuario;
+import biblioteca.repositories.EmprestimoRepository;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -16,11 +18,12 @@ import org.springframework.http.ResponseEntity;
  */
 public class EmprestimoService {
     
+	private EmprestimoRepository emprestimoRepository;
     private LivroService livroService;
     private UsuarioService usuarioService;
     
     
-    public void cadastrarEmprestimo(Emprestimo emprestimo){
+    public ResponseEntity<Emprestimo> cadastrarEmprestimo(Emprestimo emprestimo){
         	Livro livro = emprestimo.getLivro();
 		Usuario usuario = emprestimo.getUsuario();
 		
@@ -30,7 +33,7 @@ public class EmprestimoService {
 			emprestimo.setLivro(livroexistente);
 		}
 		
-		Usuario usuarioExistente = usuarioService
+		Usuario usuarioExistente = usuarioService.getUsuarioByIdService(usuario.getId());
 		if(usuarioExistente != null) {
 			emprestimo.setUsuario(usuarioExistente);
 		}
