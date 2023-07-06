@@ -28,7 +28,7 @@ public class Livro implements Serializable  {
     
 	@OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private List<Emprestimo> emprestimos;
+	private List<Favorite> favoriteBook;
 	
 	
 

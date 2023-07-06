@@ -28,7 +28,7 @@ public class Usuario implements Serializable  {
     
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Emprestimo> emprestimos;
+    private List<Favorite> emprestimos;
     
     public String getNome() {
 		return nome;
@@ -60,12 +60,12 @@ public class Usuario implements Serializable  {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public List<Emprestimo> getEmprestimos() {
-		return emprestimos;
-	}
-	public void setEmprestimos(List<Emprestimo> emprestimos) {
-		this.emprestimos = emprestimos;
-	}
+	//public List<BookUserManager> getbookUserManager() {
+	//	return emprestimos;
+	//}
+	//public void setEmprestimos(List<BookUserManager> emprestimos) {
+	//	this.emprestimos = emprestimos;
+	//}
 	public long getId() {
 		return id;
 	}

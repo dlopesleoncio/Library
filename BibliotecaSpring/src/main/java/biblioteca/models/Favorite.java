@@ -11,7 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Emprestimo implements Serializable  {
+public class Favorite implements Serializable  {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +26,8 @@ public class Emprestimo implements Serializable  {
 	@JoinColumn(name="id_usuario")	
 	private Usuario usuario;
 
-	private String dataEmprestimo;
-	private String dataDevolucao;
+	private String dataFavorite;
+
 	public Livro getLivro() {
 		return livro;
 	}
@@ -40,18 +40,13 @@ public class Emprestimo implements Serializable  {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public String getDataEmprestimo() {
-		return dataEmprestimo;
+	public String getDataBookUserManager() {
+		return dataFavorite;
 	}
-	public void setDataEmprestimo(String dataEmprestimo) {
-		this.dataEmprestimo = dataEmprestimo;
+	public void setDataFavorite(String dataFavorite) {
+		this.dataFavorite = dataFavorite;
 	}
-	public String getDataDevolucao() {
-		return dataDevolucao;
-	}
-	public void setDataDevolucao(String dataDevolucao) {
-		this.dataDevolucao = dataDevolucao;
-	}
+
 	
 	
 }

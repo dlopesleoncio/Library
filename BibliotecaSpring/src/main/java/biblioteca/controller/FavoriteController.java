@@ -16,25 +16,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import biblioteca.models.Emprestimo;
+import biblioteca.models.Favorite;
 import biblioteca.models.Livro;
 import biblioteca.models.Usuario;
-import biblioteca.repositories.EmprestimoRepository;
+
+import biblioteca.repositories.FavoritesRepository;
 import biblioteca.repositories.LivroRepository;
 import biblioteca.repositories.UsuarioRepository;
-import biblioteca.service.EmprestimoService;
+import biblioteca.service.FavoriteService;
 
 
 @RestController
-@RequestMapping("/api/emprestimo")
-public class EmprestimoController {
+@RequestMapping("/api/favoritos")
+public class FavoriteController {
 	
 	
 	@Autowired
-	private EmprestimoRepository emprestimoRepository;
+	private FavoritesRepository favoritesrepository;
 	
 	@Autowired
-	private EmprestimoService emprestimoService;
+	private FavoriteService favoriteService;
 	
 	//@Autowired
 /*	public EmprestimoController(EmprestimoRepository emprestimoRepository,LivroRepository livroRepository,UsuarioRepository usuarioRepository  ) {
@@ -43,45 +44,57 @@ public class EmprestimoController {
 		this.usuarioRepository = usuarioRepository;
 	}*/
 	@Autowired
-	public EmprestimoController(EmprestimoRepository emprestimoRepository) {
-		this.emprestimoRepository =  emprestimoRepository;
+	public FavoriteController(FavoritesRepository favoritesrepository) {
+		this.favoritesrepository =  favoritesrepository;
 	}
 	
-	
-	
-	
+
 	@GetMapping
-	public List<Emprestimo> getEmprestimos() {
-		return emprestimoRepository.findAll();
+	public List<Favorite> getFavorites() {
+		return favoritesrepository.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Emprestimo> getEmprestimo(@PathVariable Integer id){
-		Emprestimo emprestimo = emprestimoRepository.findById(id).orElse(null);
-        if (emprestimo != null) {
-            return ResponseEntity.ok(emprestimo);
+	public ResponseEntity<Favorite> getFavorite(@PathVariable Integer id){
+		Favorite favorites = favoritesrepository.findById(id).orElse(null);
+        if (favorites != null) {
+            return ResponseEntity.ok(favorites);
         } else {
             return ResponseEntity.notFound().build();
         }
 	}
 	
+	@GetMapping
+	public List<Livro> getFavoritesByUserId(@PathVariable Integer id){
+		 List<Favorite> favoritos= favoritesrepository.findAllByUserId(id);
+		 
+		 //---Tudo isso tem que ficar dentro do Favorite Service----
+		 List<Livro> livros;
+		 for( Favorite favorito:favorites)_{
+			 
+			 //CHAMAR O LIVRO SERVICE PARA PEGAR O LIVRO COM O ID
+			 //ARMAZENAR O LIVRO NA LISTA DE LIVROS E RETORNAR
+			 
+			 livros.add(favorito.geLivroId)
+			 
+		 }
+		 return
+	}
+	
     @PostMapping
     @Transactional
-    public ResponseEntity<Emprestimo> cadastrarEmprestimo(@RequestBody Emprestimo emprestimo) {
-    	return emprestimoService.cadastrarEmprestimo(emprestimo);
+    public ResponseEntity<Favorite> cadastrarEmprestimo(@RequestBody Favorite favorites) {
+    	return favoriteService.cadastrarFavorite(favorites);
     }
 	
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Emprestimo> alterarEmprestimo(@PathVariable int id, @RequestBody Emprestimo novoEmprestimo) {
-    	Emprestimo emprestimo = emprestimoRepository.findById(id).orElse(null);
+    public ResponseEntity<Favorite> alterarEmprestimo(@PathVariable int id, @RequestBody Favorite novoFavorites) {
+    	Favorite emprestimo = favoritesrepository.findById(id).orElse(null);
         if (emprestimo != null) {
         	emprestimo.setLivro(emprestimo.getLivro());
-        	emprestimo.setUsuario(novoEmprestimo.getUsuario());
-        	emprestimo.setDataEmprestimo(novoEmprestimo.getDataEmprestimo());
-        	emprestimo.setDataDevolucao(novoEmprestimo.getDataDevolucao());
-
-        	emprestimoRepository.save(emprestimo);
+        	emprestimo.setUsuario(novoFavorites.getUsuario());
+        	favoritesrepository.save(emprestimo);
             return ResponseEntity.ok(emprestimo);
         } else {
             return ResponseEntity.notFound().build();
@@ -91,9 +104,9 @@ public class EmprestimoController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity<Void> deletarEmprestimo(@PathVariable int id) {
-    	Emprestimo emprestimo = emprestimoRepository.findById(id).orElse(null);
-        if (emprestimo != null) {
-        	emprestimoRepository.delete(emprestimo);
+    	Favorite favorite = favoritesrepository.findById(id).orElse(null);
+        if (favorite != null) {
+        	favoritesrepository.delete(favorite);
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

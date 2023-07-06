@@ -62,7 +62,7 @@ public class UsuarioController {
         	usuario.setNome(novoUsuario.getNome());
         	usuario.setCpf(novoUsuario.getCpf());
         	usuario.setEmail(novoUsuario.getEmail());
-        	usuario.setEmprestimos(novoUsuario.getEmprestimos());
+        	//usuario.setEmprestimos(novoUsuario.getEmprestimos());
         	usuario.setQtdLivros(novoUsuario.getQtdLivros());
         	usuario.setTelefone(usuario.getTelefone());
         	usuarioRepository.save(usuario);
@@ -83,5 +83,7 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    @Get
 	
 }
