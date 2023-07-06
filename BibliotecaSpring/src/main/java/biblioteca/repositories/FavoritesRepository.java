@@ -13,6 +13,6 @@ import biblioteca.models.Favorite;
 @EnableJpaRepositories
 public interface FavoritesRepository extends JpaRepository<Favorite, Integer>  {
 	
-    @Query("SELECT f FROM Favorite f WHERE f.userId = :userId")
-    List<Favorite> findAllByUserId(Integer userId);	
+    @Query("SELECT f FROM Favorite f WHERE f.usuario = :id")
+    List<Favorite> findAllByUserId(Integer id);	
 }

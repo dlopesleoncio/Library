@@ -1,5 +1,6 @@
 package biblioteca.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.el.stream.Optional;
@@ -64,21 +65,18 @@ public class FavoriteController {
         }
 	}
 	
-	@GetMapping
+	@GetMapping("/user/{id}")
 	public List<Livro> getFavoritesByUserId(@PathVariable Integer id){
 		 List<Favorite> favoritos= favoritesrepository.findAllByUserId(id);
 		 
 		 //---Tudo isso tem que ficar dentro do Favorite Service----
-		 List<Livro> livros;
-		 for( Favorite favorito:favorites)_{
+		 List<Livro> livros = new ArrayList<>();
+		 for( Favorite favorito:favoritos){
 			 
-			 //CHAMAR O LIVRO SERVICE PARA PEGAR O LIVRO COM O ID
-			 //ARMAZENAR O LIVRO NA LISTA DE LIVROS E RETORNAR
-			 
-			 livros.add(favorito.geLivroId)
+			 livros.add(favorito.getLivro());
 			 
 		 }
-		 return
+		 return livros;
 	}
 	
     @PostMapping

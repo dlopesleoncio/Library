@@ -11,6 +11,7 @@ import biblioteca.repositories.FavoritesRepository;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class FavoriteService {
     
+	@Autowired
 	private FavoritesRepository favoritepository;
+	@Autowired
     private LivroService livroService;
+	@Autowired
     private UsuarioService usuarioService;
     
     

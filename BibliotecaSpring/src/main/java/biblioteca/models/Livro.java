@@ -20,10 +20,10 @@ public class Livro implements Serializable  {
 	
 	private String titulo;
     private String autor;
-    private long nroPaginas;
+    private Long nroPaginas;
     private boolean disponivel;
     private String categoria;
-    private int anoPublicacao;
+    private Integer anoPublicacao;
     private String img_paths;
     
 	@OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
@@ -51,10 +51,10 @@ public class Livro implements Serializable  {
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
 	}
-	public int getAnoPublicacao() {
+	public Integer getAnoPublicacao() {
 		return anoPublicacao;
 	}
-	public void setAnoPublicacao(int anoPublicacao) {
+	public void setAnoPublicacao(Integer anoPublicacao) {
 		this.anoPublicacao = anoPublicacao;
 	}
 	public Long getId() {
@@ -63,10 +63,10 @@ public class Livro implements Serializable  {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public long getNroPaginas() {
+	public Long getNroPaginas() {
 		return nroPaginas;
 	}
-	public void setNroPaginas(long nroPaginas) {
+	public void setNroPaginas(Long nroPaginas) {
 		this.nroPaginas = nroPaginas;
 	}
 	public String getCategoria() {

@@ -15,7 +15,7 @@ public class Favorite implements Serializable  {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	
 	@ManyToOne
