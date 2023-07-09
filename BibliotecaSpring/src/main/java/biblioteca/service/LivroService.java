@@ -31,10 +31,10 @@ public class LivroService {
     
     public ResponseEntity<Void> deletarLivroService(Long id){
         
-   	Livro livro = getLivrobyIdService(id);
-        livroRepository.delete(livro);
-        return ResponseEntity.noContent().build();
-        }
+	   	Livro livro = getLivrobyIdService(id);
+	        livroRepository.delete(livro);
+	        return ResponseEntity.noContent().build();
+    }
    
     
     public ResponseEntity<Livro> alterarLivroService(Long id, Livro novolivro){

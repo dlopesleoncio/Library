@@ -3,8 +3,14 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useState } from 'react';
 
-function DropdownNav() {
+function DropdownNav({categoria,setCategoria}) {
+
+  
+
+
+
   return (
     <Navbar variant="dark" bg="dark" expand="lg">
       <Container fluid>
@@ -16,12 +22,10 @@ function DropdownNav() {
               id="nav-dropdown-dark-example"
               title="Categories"
               menuVariant="dark"
+              onSelect={setCategoria}
             >
-              <NavDropdown.Item href="#action/3.1">Computing</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Romance
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Thriller</NavDropdown.Item>
+              <NavDropdown.Item eventKey="Computing" >Computing</NavDropdown.Item>
+              <NavDropdown.Item eventKey="Romance">Romance</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 --
@@ -32,6 +36,9 @@ function DropdownNav() {
       </Container>
     </Navbar>
   );
+  
+
+
 }
 
 export default DropdownNav;

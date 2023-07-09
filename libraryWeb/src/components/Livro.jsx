@@ -2,9 +2,9 @@
 import { StyledLivro,StyledImage } from "./styles/Livro.Styled"
 export default function Livro({livro}){
     
-    console.log(livro)
-    const livroPath = livro.img_path
     
+    const livroPath = livro.imgpath
+    console.log(livro)
     return(
         
             <StyledLivro>
@@ -13,8 +13,4 @@ export default function Livro({livro}){
 
     )
         
-
-    
-
-
 }

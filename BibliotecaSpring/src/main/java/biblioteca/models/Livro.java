@@ -24,7 +24,7 @@ public class Livro implements Serializable  {
     private boolean disponivel;
     private String categoria;
     private Integer anoPublicacao;
-    private String img_paths;
+    private String imgpath;
     
 	@OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -75,11 +75,11 @@ public class Livro implements Serializable  {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public String getImg_paths() {
-		return img_paths;
+	public String getImgpath() {
+		return imgpath;
 	}
-	public void setImg_paths(String img_paths) {
-		this.img_paths = img_paths;
+	public void setImgpath(String imgpath) {
+		this.imgpath = imgpath;
 	}
 	
 	
