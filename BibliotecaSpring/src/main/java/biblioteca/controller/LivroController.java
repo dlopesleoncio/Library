@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import biblioteca.models.Livro;
@@ -28,7 +30,6 @@ public class LivroController {
 	@Autowired
 	private LivroService livroService;        
         
-	@Autowired
 	public LivroController(LivroRepository livroRepository) {
 		this.livroRepository =  livroRepository;
 	}
@@ -37,6 +38,19 @@ public class LivroController {
 	public List<Livro> getLivros() {
 		return livroRepository.findAll();
 	}
+	
+	@GetMapping("categoria/{categoriaPath}")
+	public List<Livro> geyLivroByCategoria(@PathVariable String categoriaPath){
+		return livroRepository.findAllLivroByCategoria(categoriaPath);
+	}
+	
+	
+	@GetMapping("nomes")
+	@ResponseBody
+	public List<Livro> getLivros(@RequestParam String titulo) {
+		return livroRepository.findAllLivroByTituloContainingIgnoreCaseAndImgpathIsNotNull(titulo);
+	}
+	
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Livro> getLivro(@PathVariable Long id){

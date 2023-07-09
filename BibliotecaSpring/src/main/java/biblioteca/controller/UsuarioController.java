@@ -27,7 +27,6 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	@Autowired
 	public UsuarioController(UsuarioRepository usuarioRepository) {
 		this.usuarioRepository =  usuarioRepository;
 	}
@@ -46,6 +45,7 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
 	}
+	
 	
 	@PostMapping
     @Transactional

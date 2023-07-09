@@ -44,7 +44,6 @@ public class FavoriteController {
 		this.livroRepository = livroRepository;
 		this.usuarioRepository = usuarioRepository;
 	}*/
-	@Autowired
 	public FavoriteController(FavoritesRepository favoritesrepository) {
 		this.favoritesrepository =  favoritesrepository;
 	}
@@ -54,6 +53,7 @@ public class FavoriteController {
 	public List<Favorite> getFavorites() {
 		return favoritesrepository.findAll();
 	}
+
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Favorite> getFavorite(@PathVariable Integer id){
