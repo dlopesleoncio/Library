@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Usuario implements Serializable  {
@@ -20,7 +21,9 @@ public class Usuario implements Serializable  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank
 	private String cpf;
+	@NotBlank
     private String nome;
     private String telefone;
     private int qtdLivros;

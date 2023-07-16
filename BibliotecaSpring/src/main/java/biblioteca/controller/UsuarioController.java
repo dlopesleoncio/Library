@@ -19,6 +19,7 @@ import biblioteca.models.Livro;
 import biblioteca.models.Usuario;
 import biblioteca.repositories.LivroRepository;
 import biblioteca.repositories.UsuarioRepository;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/usuario")
@@ -47,9 +48,15 @@ public class UsuarioController {
 	}
 	
 	
-	@PostMapping
+	@PostMapping("/cadastrar")
     @Transactional
-    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> cadastrarUsuario(@Valid @RequestBody Usuario usuario) {
+		usuarioRepository.save(usuario);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+    }
+	
+	@PostMapping("/login")
+    public ResponseEntity<Usuario> autenticarUsuario(@Valid @RequestBody Usuario usuario) {
 		usuarioRepository.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
     }
